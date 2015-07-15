@@ -32,6 +32,15 @@
     
     return scaledImage;   //返回的就是已经改变的图片
 }
+
++ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    //UIGraphicsBeginImageContext(newSize);
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
 #pragma mark - 字符串类操作
 /**
  *   @author xiaerfei, 15-07-15 09:07:39
@@ -102,6 +111,14 @@
     [attri addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(leftPos,rightPos)];
     [attri addAttribute:NSFontAttributeName value:font range:NSMakeRange(leftPos, rightPos)];
     return attri;
+}
+
+#pragma mark - 日期操作
++ (NSString *)getCurrentDate
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    return [dateFormatter stringFromDate:[NSDate date]];
 }
 
 #pragma mark - 文件类操作
