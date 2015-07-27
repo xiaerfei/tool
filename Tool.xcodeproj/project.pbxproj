@@ -14,7 +14,8 @@
 		4EDF89711B55F45F00882DCE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EDF89701B55F45F00882DCE /* Images.xcassets */; };
 		4EDF89741B55F45F00882DCE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EDF89721B55F45F00882DCE /* LaunchScreen.xib */; };
 		4EDF89801B55F45F00882DCE /* ToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDF897F1B55F45F00882DCE /* ToolTests.m */; };
-		4EDF898B1B55F50400882DCE /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDF898A1B55F50400882DCE /* Utilities.m */; };
+		4EEBE3CB1B663A9C0054754D /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEBE3CA1B663A9C0054754D /* UIImage+fixOrientation.m */; };
+		4EEBE3CF1B663AB20054754D /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEBE3CE1B663AB20054754D /* Utilities.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,8 +42,10 @@
 		4EDF89791B55F45F00882DCE /* ToolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToolTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EDF897E1B55F45F00882DCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EDF897F1B55F45F00882DCE /* ToolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToolTests.m; sourceTree = "<group>"; };
-		4EDF89891B55F50400882DCE /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utilities.h; path = Utilities/Utilities.h; sourceTree = "<group>"; };
-		4EDF898A1B55F50400882DCE /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utilities.m; path = Utilities/Utilities.m; sourceTree = "<group>"; };
+		4EEBE3C91B663A9C0054754D /* UIImage+fixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+fixOrientation.h"; sourceTree = "<group>"; };
+		4EEBE3CA1B663A9C0054754D /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
+		4EEBE3CD1B663AB20054754D /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		4EEBE3CE1B663AB20054754D /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,15 +87,8 @@
 		4EDF89621B55F45F00882DCE /* Tool */ = {
 			isa = PBXGroup;
 			children = (
-				4EDF89671B55F45F00882DCE /* AppDelegate.h */,
-				4EDF89681B55F45F00882DCE /* AppDelegate.m */,
-				4EDF896A1B55F45F00882DCE /* ViewController.h */,
-				4EDF896B1B55F45F00882DCE /* ViewController.m */,
-				4EDF89891B55F50400882DCE /* Utilities.h */,
-				4EDF898A1B55F50400882DCE /* Utilities.m */,
-				4EDF896D1B55F45F00882DCE /* Main.storyboard */,
-				4EDF89701B55F45F00882DCE /* Images.xcassets */,
-				4EDF89721B55F45F00882DCE /* LaunchScreen.xib */,
+				4EEBE3CC1B663AB20054754D /* Utilities */,
+				4EEBE3C81B663A9C0054754D /* fixOrientation */,
 				4EDF89631B55F45F00882DCE /* Supporting Files */,
 			);
 			path = Tool;
@@ -101,6 +97,7 @@
 		4EDF89631B55F45F00882DCE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4EEBE3D01B663AB80054754D /* AppDelegate */,
 				4EDF89641B55F45F00882DCE /* Info.plist */,
 				4EDF89651B55F45F00882DCE /* main.m */,
 			);
@@ -122,6 +119,38 @@
 				4EDF897E1B55F45F00882DCE /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4EEBE3C81B663A9C0054754D /* fixOrientation */ = {
+			isa = PBXGroup;
+			children = (
+				4EEBE3C91B663A9C0054754D /* UIImage+fixOrientation.h */,
+				4EEBE3CA1B663A9C0054754D /* UIImage+fixOrientation.m */,
+			);
+			path = fixOrientation;
+			sourceTree = "<group>";
+		};
+		4EEBE3CC1B663AB20054754D /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4EEBE3CD1B663AB20054754D /* Utilities.h */,
+				4EEBE3CE1B663AB20054754D /* Utilities.m */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		4EEBE3D01B663AB80054754D /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				4EDF89671B55F45F00882DCE /* AppDelegate.h */,
+				4EDF89681B55F45F00882DCE /* AppDelegate.m */,
+				4EDF896A1B55F45F00882DCE /* ViewController.h */,
+				4EDF896B1B55F45F00882DCE /* ViewController.m */,
+				4EDF896D1B55F45F00882DCE /* Main.storyboard */,
+				4EDF89701B55F45F00882DCE /* Images.xcassets */,
+				4EDF89721B55F45F00882DCE /* LaunchScreen.xib */,
+			);
+			name = AppDelegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,10 +253,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EEBE3CB1B663A9C0054754D /* UIImage+fixOrientation.m in Sources */,
 				4EDF896C1B55F45F00882DCE /* ViewController.m in Sources */,
 				4EDF89691B55F45F00882DCE /* AppDelegate.m in Sources */,
-				4EDF898B1B55F50400882DCE /* Utilities.m in Sources */,
 				4EDF89661B55F45F00882DCE /* main.m in Sources */,
+				4EEBE3CF1B663AB20054754D /* Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +452,7 @@
 				4EDF89851B55F45F00882DCE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4EDF89861B55F45F00882DCE /* Build configuration list for PBXNativeTarget "ToolTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +461,7 @@
 				4EDF89881B55F45F00882DCE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
