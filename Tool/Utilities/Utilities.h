@@ -22,6 +22,18 @@
  *   @return 返回对应尺寸的图片
  */
 + (UIImage *)originImage:(UIImage *)image scaleToSize:(CGSize)size;
+/**
+ *   @author xiaerfei, 15-07-27 18:07:58
+ *
+ *   截取规定大小的图片
+ *
+ *   @param image      image
+ *   @param mCGRect    规定截取大小
+ *   @param centerBool 是否以中心点为截取依据
+ *
+ *   @return 截取后的图像
+ */
++ (UIImage*)getSubImage:(UIImage *)image mCGRect:(CGRect)mCGRect centerBool:(BOOL)centerBool;
 
 #pragma mark - 字符串类操作
 /**
