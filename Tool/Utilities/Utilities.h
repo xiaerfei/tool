@@ -75,6 +75,16 @@
  */
 + (NSMutableAttributedString *)text:(NSString*)text leftPosition:(NSInteger)leftPos rightPosition:(NSInteger)rightPos color:(UIColor*)color font:(UIFont*)font;
 
+#pragma mark - view 操作
+/**
+ *   @author xiaerfei, 15-10-08 10:10:09
+ *
+ *   获取当前窗口的viewcontroller
+ *
+ *   @return
+ */
+- (UIViewController *)getCurrentVC;
+
 #pragma mark - 文件类操作
 /**
  *   @author xiaerfei, 15-07-15 10:07:20
