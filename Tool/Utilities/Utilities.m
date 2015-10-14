@@ -41,6 +41,72 @@
     UIGraphicsEndImageContext();
     return newImage;
 }
+ /**
+ *   @author xiaerfei, 15-07-27 18:07:58
+ *
+ *   截取规定大小的图片
+ *
+ *   @param image      image
+ *   @param mCGRect    规定截取大小
+ *   @param centerBool 是否以中心点为截取依据
+ *
+ *   @return 截取后的图像
+ */
++ (UIImage*)getSubImage:(UIImage *)image mCGRect:(CGRect)mCGRect centerBool:(BOOL)centerBool
+{
+    /*如若centerBool为Yes则是由中心点取mCGRect范围的图片*/
+    float imgwidth = image.size.width;
+    float imgheight = image.size.height;
+    float viewwidth = mCGRect.size.width;
+    float viewheight = mCGRect.size.height;
+    CGRect rect;
+    if(centerBool)
+        rect = CGRectMake((imgwidth-viewwidth)/2, (imgheight-viewheight)/2, viewwidth, viewheight);
+    else{
+        if (viewheight < viewwidth) {
+            if (imgwidth <= imgheight) {
+                rect = CGRectMake(0, 0, imgwidth, imgwidth*viewheight/viewwidth);
+            }else {
+                float width = viewwidth*imgheight/viewheight;
+                float x = (imgwidth - width)/2 ;
+                if (x > 0) {
+                    rect = CGRectMake(x, 0, width, imgheight);
+                }else {
+                    rect = CGRectMake(0, 0, imgwidth, imgwidth*viewheight/viewwidth);
+                }
+            }
+        }else {
+            if (imgwidth <= imgheight) {
+                float height = viewheight*imgwidth/viewwidth;
+                if (height < imgheight) {
+                    rect = CGRectMake(0, 0, imgwidth, height);
+                }else {
+                    rect = CGRectMake(0, 0, viewwidth*imgheight/viewheight, imgheight);
+                }
+            }else {
+                float width = viewwidth*imgheight/viewheight;
+                if (width < imgwidth) {
+                    float x = (imgwidth - width)/2 ;
+                    rect = CGRectMake(x, 0, width, imgheight);
+                }else {
+                    rect = CGRectMake(0, 0, imgwidth, imgheight);
+                }
+            }
+        }
+    }
+    CGImageRef subImageRef = CGImageCreateWithImageInRect(image.CGImage, rect);
+    CGRect smallBounds = CGRectMake(0, 0, CGImageGetWidth(subImageRef), CGImageGetHeight(subImageRef));
+    
+    UIGraphicsBeginImageContext(smallBounds.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextDrawImage(context, smallBounds, subImageRef);
+    UIImage* smallImage = [UIImage imageWithCGImage:subImageRef];
+    UIGraphicsEndImageContext();
+    
+    return smallImage;
+}
+
+
 #pragma mark - 字符串类操作
 /**
  *   @author xiaerfei, 15-07-15 09:07:39
@@ -119,6 +185,42 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     return [dateFormatter stringFromDate:[NSDate date]];
+}
+#pragma mark - view 操作
+/**
+ *   @author xiaerfei, 15-10-08 10:10:09
+ *
+ *   获取当前窗口的viewcontroller
+ *
+ *   @return
+ */
+- (UIViewController *)getCurrentVC
+{
+    UIViewController *result = nil;
+    
+    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    if (window.windowLevel != UIWindowLevelNormal)
+    {
+        NSArray *windows = [[UIApplication sharedApplication] windows];
+        for(UIWindow * tmpWin in windows)
+        {
+            if (tmpWin.windowLevel == UIWindowLevelNormal)
+            {
+                window = tmpWin;
+                break;
+            }
+        }
+    }
+    
+    UIView *frontView = [[window subviews] objectAtIndex:0];
+    id nextResponder = [frontView nextResponder];
+    
+    if ([nextResponder isKindOfClass:[UIViewController class]])
+        result = nextResponder;
+    else
+        result = window.rootViewController;
+    
+    return result;
 }
 
 #pragma mark - 文件类操作
